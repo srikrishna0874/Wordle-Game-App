@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:wordlegame/ui/home.dart';
+import 'package:wordlegame/util/wordleLogic.dart';
 
 void main() {
+  WordleLogic.getWords();
   runApp(const MyApp());
 }
 
