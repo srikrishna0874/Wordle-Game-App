@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wordlegame/ui/keyboardWidget.dart';
+import 'package:wordlegame/util/wordleLogic.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -9,6 +10,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  WordleLogic game=WordleLogic();
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WordleLogic.initGame();
+  }
   @override
   Widget build(BuildContext context) {
 
@@ -32,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
           SizedBox(
             height: screenHeight*0.03,
           ),
-          KeyBoardWidget(),
+          KeyBoardWidget(game),
         ],
       ),
     );

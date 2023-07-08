@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wordlegame/ui/wordleScreen.dart';
+import 'package:wordlegame/util/wordleLogic.dart';
 
 class KeyBoardWidget extends StatefulWidget {
-  const KeyBoardWidget({super.key});
+  WordleLogic game;
+  KeyBoardWidget(this.game,{super.key});
 
   @override
   State<KeyBoardWidget> createState() => _KeyBoardWidgetState();
@@ -18,6 +21,7 @@ class _KeyBoardWidgetState extends State<KeyBoardWidget> {
     double screenHeight = MediaQuery.of(context).size.height;
     return Column(
       children: [
+        WordleScreen(widget.game),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: firstRow.map((e) {

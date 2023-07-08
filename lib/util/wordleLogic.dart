@@ -14,12 +14,11 @@ class WordleLogic {
   static List<List<String>> allWords = List.generate(26, (index) => []);
   static bool gameStatus = false;
   static List<Letter> gameRow = List.generate(5, (index) => Letter("", 0));
-  static List<List<Letter>> gameBoard =
-      List.generate(5, (index1) => List.generate(5, (index2) => Letter("", 0)));
+  List<List<Letter>> gameBoard =
+      List.generate(6, (index1) => List.generate(5, (index2) => Letter("", 0)));
 
   static Future<void> getWords() async {
     String apiUrl = "https://api.datamuse.com/words?sp=";
-    int res = 0;
     for (int i = 0; i < 26; i++) {
       String str = String.fromCharCode('a'.codeUnitAt(0) + i);
       var response = await http.get(Uri.parse(apiUrl + "$str????"));
@@ -36,15 +35,22 @@ class WordleLogic {
       }
     }
     for (int i = 0; i < 26; i++) {
-      wordList.addAll(allWords[i]);
+      print(allWords[i]);
+      for (int j = 0; j < allWords[i].length; j++) {
+        wordList.add(allWords[i][j].toUpperCase());
+      }
     }
     print(wordList);
+    print(wordList.length);
+    initGame();
   }
 
   static Future<void> initGame() async {
-    //var response=await http.get(Uri.parse(apiUrl));
-    //print(response.statusCode);
-    //print(response.body);
+    print("\n\n\n\nRandom function started\n\n\n\n\n\n");
+    final rand = new Random();
+    int ind = rand.nextInt(wordList.length);
+    correctWord = wordList[ind];
+    print("\n\n\n\nCorrect Word: ${correctWord}\n\n\n\n\n\n\n\n\n\n\n");
   }
 
   void add(ind, word) {
