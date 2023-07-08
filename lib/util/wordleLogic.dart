@@ -7,7 +7,7 @@ import 'package:wordlegame/util/individualCharacter.dart';
 
 class WordleLogic {
   int rowNumber = 0;
-  int letterAscii = 0;
+  int letterId = 0;
   static String message = "";
   static String correctWord = "";
   static List<String> wordList = [];
@@ -53,8 +53,8 @@ class WordleLogic {
     print("\n\n\n\nCorrect Word: ${correctWord}\n\n\n\n\n\n\n\n\n\n\n");
   }
 
-  void add(ind, word) {
-    gameBoard[rowNumber][ind] = word;
+  void add(ind, letter) {
+    gameBoard[rowNumber][ind] = letter;
   }
 
   bool check(String word) {

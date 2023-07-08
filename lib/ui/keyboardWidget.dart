@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wordlegame/ui/wordleScreen.dart';
+import 'package:wordlegame/util/individualCharacter.dart';
 import 'package:wordlegame/util/wordleLogic.dart';
 
 class KeyBoardWidget extends StatefulWidget {
   WordleLogic game;
-  KeyBoardWidget(this.game,{super.key});
+  KeyBoardWidget(this.game, {super.key});
 
   @override
   State<KeyBoardWidget> createState() => _KeyBoardWidgetState();
@@ -21,13 +22,31 @@ class _KeyBoardWidgetState extends State<KeyBoardWidget> {
     double screenHeight = MediaQuery.of(context).size.height;
     return Column(
       children: [
+        Text(
+          WordleLogic.message,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        SizedBox(
+          height: screenHeight * 0.03,
+        ),
         WordleScreen(widget.game),
+        SizedBox(
+          height: screenHeight * 0.03,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: firstRow.map((e) {
             return GestureDetector(
               onTap: () {
                 debugPrint(e);
+                if (widget.game.letterId < 6) {
+                  setState(() {
+                    widget.game.add(widget.game.letterId, Letter(e, 0));
+                    widget.game.letterId++;
+                  });
+                }
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -57,6 +76,12 @@ class _KeyBoardWidgetState extends State<KeyBoardWidget> {
             return GestureDetector(
               onTap: () {
                 debugPrint(e);
+                if (widget.game.letterId < 6) {
+                  setState(() {
+                    widget.game.add(widget.game.letterId, Letter(e, 0));
+                    widget.game.letterId++;
+                  });
+                }
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -86,6 +111,26 @@ class _KeyBoardWidgetState extends State<KeyBoardWidget> {
             return GestureDetector(
               onTap: () {
                 debugPrint(e);
+                if(e=="DEL") {
+                  if(widget.game.letterId>0) {
+                    setState(() {
+                      widget.game.add(widget.game.letterId-1, Letter("", 0));
+                      widget.game.letterId--;
+                    });
+                  }
+
+                }
+                else if(e=="ENTER") {
+
+                }
+                else {
+                  if (widget.game.letterId < 6) {
+                    setState(() {
+                      widget.game.add(widget.game.letterId, Letter(e, 0));
+                      widget.game.letterId++;
+                    });
+                  }
+                }
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -94,14 +139,19 @@ class _KeyBoardWidgetState extends State<KeyBoardWidget> {
                 ),
                 padding: EdgeInsets.all(8),
                 child: Center(
-                  child: Text(
-                    e,
-                    style: TextStyle(
-                      fontSize: screenWidth * 0.05,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  child: e != "DEL"
+                      ? Text(
+                          e,
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.05,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      : Icon(
+                          Icons.backspace_outlined,
+                          color: Colors.white,
+                        ),
                 ),
               ),
             );

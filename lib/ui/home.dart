@@ -14,36 +14,34 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    WordleLogic.initGame();
-  }
-  @override
   Widget build(BuildContext context) {
 
     double screenWidth=MediaQuery.of(context).size.width;
     double screenHeight=MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Center(
-            child: Text(
-              "Wordle",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: screenWidth*0.1,
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Text(
+                "Wordle",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: screenWidth*0.1,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: screenHeight*0.03,
-          ),
-          KeyBoardWidget(game),
-        ],
+            SizedBox(
+              height: screenHeight*0.03,
+            ),
+            KeyBoardWidget(game),
+          ],
+        ),
       ),
     );
   }

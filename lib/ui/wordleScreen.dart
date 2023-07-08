@@ -14,7 +14,7 @@ class _WordleScreenState extends State<WordleScreen> {
   
   Color getColor(int status) {
     if(status==0) {
-      return Colors.grey;
+      return Colors.grey.shade800;
     }
     else if(status==1) {
       return Color.fromRGBO(83, 141, 78, 1);
@@ -40,6 +40,13 @@ class _WordleScreenState extends State<WordleScreen> {
                   ),
                   margin: EdgeInsets.only(bottom: 10),
                   padding: EdgeInsets.all(20),
+                  child: Center(
+                    child: Text(e.character!,style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 22.0,
+                    ),),
+                  ),
 
                   //color: getColor(e.status),
                 )).toList(),
