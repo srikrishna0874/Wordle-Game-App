@@ -20,8 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
     double screenHeight=MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

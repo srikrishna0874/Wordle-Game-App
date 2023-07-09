@@ -1,6 +1,5 @@
-import 'dart:ffi';
 
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:wordlegame/ui/wordleScreen.dart';
 import 'package:wordlegame/util/individualCharacter.dart';
